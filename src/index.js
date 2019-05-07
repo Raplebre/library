@@ -1,17 +1,15 @@
 const express = require('express')
-const Sequelize = require('sequelize')
-const sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASS,
-    {
-        dialect: 'mysql',
-        host: process.env.DB_HOST,
-        port: process.env.PORT
-    }
-)
+const bookRouter = require('./routers/book')
+const authorRouter = require('./routers/author')
+
+const port = process.env.PORT
+const db_port = process.env.DB_PORT
 
 const app = express()
 app.use(express.json())
+app.use(bookRouter)
+app.use(authorRouter)
 
-console.log(sequelize.config)
+app.listen(port, () => {
+    console.log('Server up on port ', port)
+})
