@@ -11,5 +11,5 @@ app.use(bookRouter)
 app.use(authorRouter)
 
 app.listen(port, () => {
-    console.log('Server up on port ', port)
+    console.log('Server up on port', port)
 })
