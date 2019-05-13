@@ -1,0 +1,12 @@
+<div id="search-component">
+    <h4>Author Search</h4>
+  
+    <input #searchBox id ="search-box" (input)="search(searchBox.value)" placeholder="Name"/>
+    <ul class="search-result">
+      <li *ngFor="let author of authors$ | async">
+        <a routerLink="/authEdit/{{author.auth_id}}">
+          Name: {{author.auth_name}}
+        </a>
+      </li>
+    </ul>
+  </div>

@@ -1,7 +1,7 @@
 const express = require('express')
 const mysql = require('../mysql')
 const router = new express.Router()
-
+const cors = require('cors')
 const mysqlp = mysql.promise()
 
 router.post('/authors', async (req, res) => {
@@ -17,7 +17,7 @@ router.post('/authors', async (req, res) => {
     }
 })
 
-router.get('/authors', async (req, res) => {
+router.get('/authors', cors(), async (req, res) => {
     try {
         await mysqlp.query('select * from `authors`', (err, results, fields) => {
             console.log(results)
@@ -30,10 +30,10 @@ router.get('/authors', async (req, res) => {
     }
 })
 
-router.get('/authors/:par', async (req, res) => {
+router.get('/authors/:par', cors(), async (req, res) => {
     try {
         const param = req.params.par
-        await mysqlp.query(`select * from \`authors\` where auth_id = ${param} or auth_name like "%${param}%"`, (err, results, fields) => {
+        await mysqlp.query(`select * from \`authors\` where auth_name like "%${param}%"`, (err, results, fields) => {
             if (results.length === 0){
                 res.status(404).send()
             }
@@ -47,7 +47,24 @@ router.get('/authors/:par', async (req, res) => {
     }
 })
 
-router.patch('/authors/:id', async (req, res) => {
+router.get('/authors/authEdit/:id', cors(), async (req, res) => {
+    try {
+        const id = req.params.id
+        await mysqlp.query(`select * from \`authors\` where auth_id=${id}`, (err, results, fields) => {
+            if (results.length === 0) {
+                res.status(404).send()
+            }
+            else {
+                const author = results[0]
+                res.send(author)
+            }
+        })
+    } catch(e) {
+        res.status(500).send()
+    }
+})
+
+router.put('/authors/authEdit/:id', cors(), async (req, res) => {
     try {
         const id = req.params.id
         const data = req.body
@@ -55,7 +72,6 @@ router.patch('/authors/:id', async (req, res) => {
             if (err) {
                 return res.status(400).send()
             }
-            console.log(results)
             res.send(results)
         })
     }
@@ -64,7 +80,7 @@ router.patch('/authors/:id', async (req, res) => {
     }
 })
 
-router.delete('/authors/:id', async (req, res) => {
+router.delete('/authors/:id', cors(), async (req, res) => {
     try {
         const id = req.params.id
         await mysqlp.query(`delete from \`authors\` where auth_id = ${id}`)

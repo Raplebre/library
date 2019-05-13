@@ -1,5 +1,6 @@
 export class Book {
-    ISBN: string;
+    book_id: number;
+    book_isbn: string;
     book_title: string;
-    books_auth_id: number;         
+    authors_auth_id: number;         
 }

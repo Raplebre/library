@@ -1,0 +1,21 @@
+<div *ngIf="book"></div>
+  <h2>{{book.book_title | uppercase}} Details</h2>
+  <div>
+    <label>ISBN: 
+        <input [(ngModel)]="book.book_isbn" placeholder="ISBN"/>
+    </label>
+    <br/>
+    <label>Title: 
+      <input [(ngModel)]="book.book_title" placeholder="Title"/>
+    </label>
+    <br/>
+    <label>Author: 
+        <select >
+          <option *ngFor="let book of books$" [value]="book.authors_auth_id">{{book.authors_auth_id}}</option>
+        </select>
+      </label>
+  </div>
+
+
+<button (click)="goBack()">Go back</button>
+<button (click)="save()">Save changes</button>

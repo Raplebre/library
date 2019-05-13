@@ -1,0 +1,11 @@
+<div *ngIf="author"></div>
+  <h2>{{author.auth_name | uppercase}} Details</h2>
+  <div>
+    <label>Name: 
+        <input [(ngModel)]="author.auth_name" placeholder="Name"/>
+    </label>
+  </div>
+
+
+<button (click)="goBack()">Go back</button>
+<button (click)="save()">Save changes</button>

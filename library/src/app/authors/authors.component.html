@@ -1,3 +1,18 @@
-<p>
-  authors works!
-</p>
+<h2>Authors of My Books</h2>
+<ul class="authors">
+  <li *ngFor="let author of authors">
+    <a routerLink="/authEdit/{{author.auth_id}}">
+      <br/>
+      <span class="badge">Author: {{author.auth_name}}</span>
+    </a>
+    <button class="delete" title="Delete author" (click)="delete(author)">X</button>
+  </li>
+</ul>
+<div>
+  <label>Author's Name: <input #authName/></label>
+  <button (click)="add(authName.value); authName.value=''">
+    add
+  </button>
+</div>
+
+<app-author-search></app-author-search>

@@ -1,0 +1,12 @@
+<div id="search-component">
+  <h4>Book Search</h4>
+
+  <input #searchBox id ="search-box" (input)="search(searchBox.value)" placeholder="Title or ISBN"/>
+  <ul class="search-result">
+    <li *ngFor="let book of books$ | async">
+      <a routerLink="/bookEdit/{{book.book_id}}">
+        ISBN: {{book.book_isbn}}<br/>Title: {{book.book_title}}
+      </a>
+    </li>
+  </ul>
+</div>
