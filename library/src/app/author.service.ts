@@ -27,7 +27,7 @@ export class AuthorService {
   }
 
   getAuthor(id: any): Observable<Author>{
-    const url = `${this.authorsUrl}/bookEdit/${id}`
+    const url = `${this.authorsUrl}/authEdit/${id}`
     return this.http.get<Author>(url)
       .pipe(
         tap(_ => this.log(`Fetched author with ID ${id}`)),

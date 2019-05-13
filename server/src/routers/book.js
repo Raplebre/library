@@ -56,7 +56,8 @@ router.get('/books/bookEdit/:id', cors(), async (req, res) => {
             }
             else {
                 const book = results[0]
-                res.send(book)
+                await mysqlp.query(`select authors.auth_name from \`authors\` left join \`books\` on authors.auth_id= books.authors_auth_id `)
+                res.send(book) // AQUIIIIIIIIIIIIIIIIIIIIIIII LINHA DE CIMA
             }
         })
     } catch(e) {
