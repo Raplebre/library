@@ -11,6 +11,7 @@ import { AuthorService} from '../author.service'
 })
 export class AuthorDetailsComponent implements OnInit {
   author: Author
+  authors: Author[]
   constructor(
     private route: ActivatedRoute,
     private authorService: AuthorService,
@@ -36,6 +37,11 @@ export class AuthorDetailsComponent implements OnInit {
     this.authorService
       .updateAuthor(this.author)
         .subscribe(() => this.goBack())
+  }
+
+  delete(author: Author): void {
+    this.authorService.deleteAuthor(author).subscribe()
+    this.goBack()
   }
 
 }

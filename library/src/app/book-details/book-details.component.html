@@ -1,4 +1,4 @@
-<div *ngIf="book"></div>
+<div *ngIf="book && authors">
   <h2>{{book.book_title | uppercase}} Details</h2>
   <div>
     <label>ISBN: 
@@ -10,12 +10,14 @@
     </label>
     <br/>
     <label>Author: 
-        <select >
-          <option *ngFor="let book of books$" [value]="book.authors_auth_id">{{book.authors_auth_id}}</option>
+        <select [(ngModel)]="book.authors_auth_id" [value]="book.authors_auth_id">
+          <option *ngFor="let author of authors" [value]="author.auth_id">{{author.auth_name}}</option>
         </select>
       </label>
   </div>
-
-
+</div>
+<br>
 <button (click)="goBack()">Go back</button>
 <button (click)="save()">Save changes</button>
+<br><br>
+<button class="delete" title="Delete book" (click)="delete(book)">DELETE</button>

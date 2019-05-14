@@ -3,6 +3,7 @@ import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Author } from '../author';
 import { AuthorService } from '../author.service'
+import { AuthorsComponent } from '../authors/authors.component'
 
 @Component({
   selector: 'app-author-search',
@@ -11,6 +12,7 @@ import { AuthorService } from '../author.service'
 })
 export class AuthorSearchComponent implements OnInit {
   authors$: Observable<Author[]>
+  authorsComponent: AuthorsComponent
   private searchTerms = new Subject<string>()
 
   constructor(private authorService: AuthorService) { }

@@ -35,18 +35,6 @@ export class BooksComponent implements OnInit {
       .subscribe(books => this.books = books)
   }
 
-  add(book_isbn: string, book_title: string, authors_auth_id: number): void {
-    book_isbn = book_isbn.trim();
-    book_title = book_title.trim();
-    if (!book_isbn || !book_title || !authors_auth_id) { return;}
-    this.bookService.addBook({book_isbn, book_title, authors_auth_id } as Book)
-      .subscribe(book => { this.books.push(book); })
-    window.location.reload()
-  }
-
-  delete(book: Book): void {
-    this.books = this.books.filter(b => b !== book)
-    this.bookService.deleteBook(book).subscribe()
-  }
+  
 
 }

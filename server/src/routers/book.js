@@ -4,7 +4,7 @@ const router = new express.Router()
 const cors = require('cors')
 const mysqlp = mysql.promise()
 
-router.post('/books', async (req, res) => {
+router.post('/books/bookAdd', async (req, res) => {
     try {
         const book = req.body
         console.log(book)
@@ -56,8 +56,8 @@ router.get('/books/bookEdit/:id', cors(), async (req, res) => {
             }
             else {
                 const book = results[0]
-                await mysqlp.query(`select authors.auth_name from \`authors\` left join \`books\` on authors.auth_id= books.authors_auth_id `)
-                res.send(book) // AQUIIIIIIIIIIIIIIIIIIIIIIII LINHA DE CIMA
+                // await mysqlp.query(`select authors.auth_name from \`authors\` left join \`books\` on authors.auth_id= books.authors_auth_id `)
+                res.send(book)
             }
         })
     } catch(e) {

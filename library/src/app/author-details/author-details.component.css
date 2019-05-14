@@ -1,0 +1,31 @@
+h2  {
+    font-family: Arial, Helvetica, sans-serif
+}
+
+label  {
+    font-family: Arial, Helvetica, sans-serif
+}
+
+button {
+    background-color: #EEE;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    cursor: hand;
+    font-family: Arial;
+}
+
+button:hover {
+    background-color: #DDD;
+}
+
+button.delete {
+    position: relative;
+    background-color: gray !important;
+    color: white;
+}
+button.delete:hover{
+    background-color: rgb(78, 78, 78) !important;
+    color: white;
+}

@@ -5,7 +5,7 @@
     <ul class="search-result">
       <li *ngFor="let author of authors$ | async">
         <a routerLink="/authEdit/{{author.auth_id}}">
-          Name: {{author.auth_name}}
+          Author: {{author.auth_name}}
         </a>
       </li>
     </ul>

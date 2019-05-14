@@ -56,7 +56,8 @@ export class BookService {
   }
 
   addBook(book: Book): Observable<Book> {
-    return this.http.post<Book>(this.booksUrl, book, httpOptions)
+    const url = `${this.booksUrl}/bookAdd`
+    return this.http.post<Book>(url, book, httpOptions)
       .pipe(
         tap((newBook: Book) => this.log(`Added book with ID ${newBook.book_id}`)),
         catchError(this.handleError<Book>('addBook'))

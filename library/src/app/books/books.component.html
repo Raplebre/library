@@ -3,18 +3,10 @@
   <li *ngFor="let book of books">
     <a routerLink="/bookEdit/{{book.book_id}}">
       <br/>
-      <span class="badge">ISBN: {{book.book_isbn}}</span><br/>Title: {{book.book_title}}  
+      ISBN: {{book.book_isbn}}<br/><br>Title: {{book.book_title}}  
     </a>
-    <button class="delete" title="Delete book" (click)="delete(book)">X</button>
   </li>
 </ul>
-<div>
-  <label>Book ISBN: <input #bookISBN/></label>
-  <label>Book title: <input #bookTitle/></label>
-  <label>Book Author: <input #bookAuthor/></label>
-  <button (click)="add(bookISBN.value, bookTitle.value, bookAuthor.value); bookISBN.value =''; bookTitle.value=''; bookAuthor.value=''">
-    add
-  </button>
-</div>
+<a routerLink='/bookAdd'><button>Add new Book</button></a>
 
 <app-book-search></app-book-search>

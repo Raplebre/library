@@ -43,9 +43,4 @@ export class AuthorsComponent implements OnInit {
     window.location.reload()
   }
 
-  delete(author: Author): void {
-    this.authors = this.authors.filter(a => a != author)
-    this.authorService.deleteAuthor(author).subscribe()
-  }
-
 }

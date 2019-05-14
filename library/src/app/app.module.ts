@@ -10,6 +10,7 @@ import { BookSearchComponent } from './book-search/book-search.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { AuthorDetailsComponent } from './author-details/author-details.component';
 import { AuthorSearchComponent } from './author-search/author-search.component';
+import { AddBookComponent } from './add-book/add-book.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AuthorSearchComponent } from './author-search/author-search.component';
     BookSearchComponent,
     BookDetailsComponent,
     AuthorDetailsComponent,
-    AuthorSearchComponent
+    AuthorSearchComponent,
+    AddBookComponent
   ],
   imports: [
     BrowserModule,
