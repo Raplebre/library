@@ -3,6 +3,7 @@ import { Author } from '../author'
 import { ActivatedRoute } from '@angular/router'
 import { Location } from '@angular/common'
 import { AuthorService} from '../author.service'
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-author-details',
@@ -12,6 +13,8 @@ import { AuthorService} from '../author.service'
 export class AuthorDetailsComponent implements OnInit {
   author: Author
   authors: Author[]
+  authorsUpdated = new Subject<Author[]>()
+
   constructor(
     private route: ActivatedRoute,
     private authorService: AuthorService,
@@ -33,14 +36,17 @@ export class AuthorDetailsComponent implements OnInit {
   }
 
   save(): void {
-    console.log(this.author)
     this.authorService
       .updateAuthor(this.author)
         .subscribe(() => this.goBack())
   }
 
   delete(author: Author): void {
-    this.authorService.deleteAuthor(author).subscribe()
+    this.authorService.deleteAuthor(author).subscribe(() => {
+      const updatedAuthors = this.authors.filter(author => this.author.auth_id !== author.auth_id)
+      this.authors = updatedAuthors
+      this.authorsUpdated.next([...this.authors])
+    })
     this.goBack()
   }
 

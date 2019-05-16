@@ -1,14 +1,14 @@
 <div><br>
-    <label>Book ISBN: <input #bookISBN OnlyNumber="true"/></label><br>
-    <label>Book Title: <input #bookTitle/></label><br>
+   <label>Book ISBN: <input #bookISBN OnlyNumber="true"/></label><br>
+   <label>Book Title: <input #bookTitle/></label><br>
 
-    <label>Book Author:
-       <select #bookAuthor>
-          <option  *ngFor="let author of authors" [value]="author.auth_id">{{author.auth_name}}</option>
-       </select>
-    </label>
-    <button (click)="add(bookISBN.value, bookTitle.value, bookAuthor.value); bookISBN.value =''; bookTitle.value=''; bookAuthor.value=''">
-      Add book
-    </button>
-  </div>
+   <label>Book Author:
+      <select #bookAuthor>
+         <option  *ngFor="let author of authors" [value]="author.auth_id">{{author.auth_name}}</option>
+      </select>
+   </label>
+   <button (click)="add(bookISBN.value, bookTitle.value, bookAuthor.value); bookISBN.value =''; bookTitle.value=''; bookAuthor.value=''">
+   Add book
+   </button>
+</div>
   <button (click)="goBack()">Go back</button>

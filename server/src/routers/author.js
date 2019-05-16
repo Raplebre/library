@@ -81,6 +81,7 @@ router.put('/authors/authEdit/:id', cors(), async (req, res) => {
 router.delete('/authors/:id', cors(), async (req, res) => {
     try {
         const id = req.params.id
+        await mysqlp.query(`delete from books where authors_auth_id = ${id}`)
         await mysqlp.query(`delete from \`authors\` where auth_id = ${id}`)
         res.send()
     }

@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
 import { Book } from '../book';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { BookService } from '../book.service';
 import { Author } from '../author'
 import { AuthorService } from '../author.service'
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-book-details',
@@ -14,8 +14,10 @@ import { AuthorService } from '../author.service'
 })
 export class BookDetailsComponent implements OnInit {
   book: Book;
+  books: Book[]
   author: Author
   authors: Author[]
+  booksUpdated = new Subject<Book[]>()
 
   constructor(
     private route: ActivatedRoute,
@@ -52,7 +54,11 @@ export class BookDetailsComponent implements OnInit {
   }
 
   delete(book: Book): void {
-    this.bookService.deleteBook(book).subscribe()
+    this.bookService.deleteBook(book).subscribe(()=> {
+      const updatedBooks = this.books.filter(book => this.book.book_id !== book.book_id)
+      this.books = updatedBooks
+      this.booksUpdated.next([...this.books])
+    })
     this.goBack()
   }
 
