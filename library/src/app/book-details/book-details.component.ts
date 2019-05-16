@@ -44,9 +44,11 @@ export class BookDetailsComponent implements OnInit {
   }
 
   save(): void {
-    this.bookService
-      .updateBook(this.book)
-        .subscribe(() => this.goBack());
+    if (this.book.book_isbn.length === 10 || this.book.book_isbn.length === 13){
+      this.bookService
+        .updateBook(this.book)
+          .subscribe(() => this.goBack());
+      }
   }
 
   delete(book: Book): void {

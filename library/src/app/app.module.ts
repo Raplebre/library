@@ -11,6 +11,8 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { AuthorDetailsComponent } from './author-details/author-details.component';
 import { AuthorSearchComponent } from './author-search/author-search.component';
 import { AddBookComponent } from './add-book/add-book.component';
+import { OnlyNumber } from './only-number.directive';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { AddBookComponent } from './add-book/add-book.component';
     BookDetailsComponent,
     AuthorDetailsComponent,
     AuthorSearchComponent,
-    AddBookComponent
+    AddBookComponent,
+    OnlyNumber
   ],
   imports: [
     BrowserModule,

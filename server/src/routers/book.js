@@ -7,7 +7,6 @@ const mysqlp = mysql.promise()
 router.post('/books/bookAdd', async (req, res) => {
     try {
         const book = req.body
-        console.log(book)
         await mysqlp.query(`CREATE TABLE IF NOT EXISTS books (book_id int(4) PRIMARY KEY AUTO_INCREMENT, book_isbn varchar(13) not null unique, book_title varchar(200) not null, authors_auth_id int(4) not null, foreign key (authors_auth_id) references authors(auth_id))`)
         await mysqlp.query(`insert into books (book_isbn, book_title, authors_auth_id) values (?,?,?)`, [book.book_isbn, book.book_title, book.authors_auth_id])
         res.status(201).send()
@@ -20,7 +19,6 @@ router.post('/books/bookAdd', async (req, res) => {
 router.get('/books', cors(), async (req, res) => {
     try {
         await mysqlp.query('select * from `books`', (err, results, fields) => {
-            console.log(results)
             res.send(results)
         })
         
@@ -56,7 +54,6 @@ router.get('/books/bookEdit/:id', cors(), async (req, res) => {
             }
             else {
                 const book = results[0]
-                // await mysqlp.query(`select authors.auth_name from \`authors\` left join \`books\` on authors.auth_id= books.authors_auth_id `)
                 res.send(book)
             }
         })
@@ -69,9 +66,6 @@ router.put('/books/bookEdit/:id', cors(), async (req, res) => {
     try {
         const id = req.params.id
         const data = req.body
-        // Receber nome do autor, trim e lowercase e comparar à base de dados, sendo que
-        // se não houverem resultados, é criado um novo autor com esse nome e atribuido o seu id ao livro
-        // e se houverem, atribui-se o id do existente em vez?
         await mysqlp.query(`update \`books\` set book_isbn = '${data.book_isbn}', book_title = '${data.book_title}', authors_auth_id = ${data.authors_auth_id} where book_id = '${id}'`, (err, results, fields) => {
             if (err) {
                 return res.status(400).send()

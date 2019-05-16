@@ -7,7 +7,6 @@ const mysqlp = mysql.promise()
 router.post('/authors', async (req, res) => {
     try {
         const author = req.body
-        console.log(author)
         await mysqlp.query(`CREATE TABLE IF NOT EXISTS authors (auth_id int(4) PRIMARY KEY AUTO_INCREMENT, auth_name varchar(250) not null)`)
         await mysqlp.query(`insert into authors (auth_name) values (?)`, [author.auth_name])
         res.status(201).send()
@@ -20,7 +19,6 @@ router.post('/authors', async (req, res) => {
 router.get('/authors', cors(), async (req, res) => {
     try {
         await mysqlp.query('select * from `authors`', (err, results, fields) => {
-            console.log(results)
             res.send(results)
         })
         

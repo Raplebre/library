@@ -5,6 +5,7 @@ import { Author } from '../author'
 import { AuthorService } from '../author.service'
 import { Location } from '@angular/common';
 
+
 @Component({
   selector: 'app-add-book',
   templateUrl: './add-book.component.html',
@@ -30,9 +31,11 @@ export class AddBookComponent implements OnInit {
   add(book_isbn: string, book_title: string, authors_auth_id: number): void {
     book_isbn = book_isbn.trim();
     book_title = book_title.trim();
-    if (!book_isbn || !book_title || !authors_auth_id) { return;}
-    this.bookService.addBook({book_isbn, book_title, authors_auth_id } as Book)
+    if ((book_isbn && book_title && authors_auth_id) && (book_isbn.length === 10 || book_isbn.length === 13)){
+      this.bookService.addBook({book_isbn, book_title, authors_auth_id } as Book)
       .subscribe(book => { this.books.push(book); })
+    }
+    else { return; }
   }
 
   goBack(): void {
