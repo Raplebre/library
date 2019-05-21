@@ -4,5 +4,6 @@ const connection = mysql.createConnection({
     user: process.env.DB_USER,
     database: process.env.DB_NAME
 })
+console.log('loading MySQL')
 
 module.exports = connection

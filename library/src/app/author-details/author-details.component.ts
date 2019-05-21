@@ -46,8 +46,10 @@ export class AuthorDetailsComponent implements OnInit {
       const updatedAuthors = this.authors.filter(author => this.author.auth_id !== author.auth_id)
       this.authors = updatedAuthors
       this.authorsUpdated.next([...this.authors])
-    })
-    this.goBack()
+    }), setTimeout(() => {
+      this.goBack()
+    }, 300);
+    
   }
 
 }

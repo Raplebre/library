@@ -39,8 +39,8 @@ export class AuthorsComponent implements OnInit {
     auth_name = auth_name.trim()
     if (!auth_name){ return; }
     this.authorService.addAuthor({ auth_name } as Author)
-      .subscribe(author => { this.authors.push(author); })
-    window.location.reload()
+      .subscribe(author => {this.authors.push(author); })
+    // window.location.reload()
   }
 
 }

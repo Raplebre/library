@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class BookService {
 
-  private booksUrl = 'http://127.0.0.1:3000/books'
+  private booksUrl = 'http://127.0.0.1:3000/api/books'
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
 

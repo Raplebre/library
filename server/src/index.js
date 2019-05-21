@@ -9,7 +9,11 @@ const db_port = process.env.DB_PORT
 const app = express()
 app.use(express.json())
 app.use(cors())
-app.use(bookRouter)
+app.use(function(req, res, next) {
+    console.log('ola')
+    next()
+})
+app.use('/api', bookRouter)
 app.use(authorRouter)
 
 app.listen(port, () => {

@@ -4,12 +4,14 @@ const router = new express.Router()
 const cors = require('cors')
 const mysqlp = mysql.promise()
 
-router.post('/books/bookAdd', async (req, res) => {
+router.post('/books/bookAdd', cors(),async (req, res) => {
     try {
         const book = req.body
+        if (book.book_isbn && book.book_title && book.authors_auth_id){
         await mysqlp.query(`CREATE TABLE IF NOT EXISTS books (book_id int(4) PRIMARY KEY AUTO_INCREMENT, book_isbn varchar(13) not null unique, book_title varchar(200) not null, authors_auth_id int(4) not null, foreign key (authors_auth_id) references authors(auth_id))`)
         await mysqlp.query(`insert into books (book_isbn, book_title, authors_auth_id) values (?,?,?)`, [book.book_isbn, book.book_title, book.authors_auth_id])
         res.status(201).send()
+        }
     }
     catch(e){
         res.status(400).send(e)

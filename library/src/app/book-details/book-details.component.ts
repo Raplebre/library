@@ -58,8 +58,10 @@ export class BookDetailsComponent implements OnInit {
       const updatedBooks = this.books.filter(book => this.book.book_id !== book.book_id)
       this.books = updatedBooks
       this.booksUpdated.next([...this.books])
-    })
-    this.goBack()
+    }), setTimeout(() => {
+      this.goBack()
+    }, 300);
+    
   }
 
 }
